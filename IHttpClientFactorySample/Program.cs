@@ -3,7 +3,6 @@ using IHttpClientFactorySample.Domains.Shared;
 using IHttpClientFactorySample.Extensions;
 using IHttpClientFactorySample.Infrastructure.Configurations;
 using IHttpClientFactorySample.Interfaces;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 var builder = WebApplication.CreateBuilder(args);
 

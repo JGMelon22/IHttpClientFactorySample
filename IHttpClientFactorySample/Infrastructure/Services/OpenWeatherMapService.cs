@@ -8,26 +8,25 @@ namespace IHttpClientFactorySample.Infrastructure.Services;
 
 public class OpenWeatherMapService : IOpenWeatherMapService
 {
-    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly HttpClient _httpClient;
     private readonly ILogger<OpenWeatherMapService> _logger;
     private readonly string _apiKey;
     private const string ClientName = "OpenWeatherMapApi";
 
-    public OpenWeatherMapService(IHttpClientFactory httpClientFactory,
+    public OpenWeatherMapService(HttpClient httpClient,
         ILogger<OpenWeatherMapService> logger,
         IOptions<OpenWeatherMapApiConfiguration> options)
     {
-        _httpClientFactory = httpClientFactory;
+        _httpClient = httpClient;
         _logger = logger;
         _apiKey = options.Value.ApiKey;
     }
 
-    public async Task<Result<RootResponse>> GetCurrentWeatherByCityAsync(string city, string units = "standard")
+    public async Task<Result<RootResponse>> GetCurrentWeatherByCityAsync(string city, string? units = "standard")
     {
         try
         {
-            HttpClient httpClient = _httpClientFactory.CreateClient(ClientName);
-            HttpResponseMessage response = await httpClient.GetAsync($"weather?q={city}&units={units}&appid={_apiKey}");
+            HttpResponseMessage response = await _httpClient.GetAsync($"weather?q={city}&units={units}&appid={_apiKey}");
             response.EnsureSuccessStatusCode();
 
             RootResponse? data = await response.Content.ReadFromJsonAsync<RootResponse>();
