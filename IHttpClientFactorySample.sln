@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IHttpClientFactorySample", "IHttpClientFactorySample\IHttpClientFactorySample.csproj", "{BFC83D29-C211-4B9B-BD82-8BE770F55727}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IHttpClientFactorySample.Tests", "IHttpClientFactorySample.Tests\IHttpClientFactorySample.Tests.csproj", "{49158EAF-8288-4B31-9E79-8ADCC5384641}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{BFC83D29-C211-4B9B-BD82-8BE770F55727}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFC83D29-C211-4B9B-BD82-8BE770F55727}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFC83D29-C211-4B9B-BD82-8BE770F55727}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49158EAF-8288-4B31-9E79-8ADCC5384641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49158EAF-8288-4B31-9E79-8ADCC5384641}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49158EAF-8288-4B31-9E79-8ADCC5384641}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49158EAF-8288-4B31-9E79-8ADCC5384641}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
