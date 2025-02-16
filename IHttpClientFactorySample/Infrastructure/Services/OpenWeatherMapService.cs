@@ -2,6 +2,7 @@ using IHttpClientFactorySample.Domains.Dtos;
 using IHttpClientFactorySample.Domains.Shared;
 using IHttpClientFactorySample.Infrastructure.Configurations;
 using IHttpClientFactorySample.Interfaces;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Options;
 
 namespace IHttpClientFactorySample.Infrastructure.Services;
@@ -11,7 +12,6 @@ public class OpenWeatherMapService : IOpenWeatherMapService
     private readonly HttpClient _httpClient;
     private readonly ILogger<OpenWeatherMapService> _logger;
     private readonly string _apiKey;
-    private const string ClientName = "OpenWeatherMapApi";
 
     public OpenWeatherMapService(HttpClient httpClient,
         ILogger<OpenWeatherMapService> logger,
@@ -22,11 +22,20 @@ public class OpenWeatherMapService : IOpenWeatherMapService
         _apiKey = options.Value.ApiKey;
     }
 
-    public async Task<Result<RootResponse>> GetCurrentWeatherByCityAsync(string city, string? units = "standard")
+    public async Task<Result<RootResponse>> GetCurrentWeatherByCityAsync(string city, string units)
     {
         try
         {
-            HttpResponseMessage response = await _httpClient.GetAsync($"weather?q={city}&units={units}&appid={_apiKey}");
+            Dictionary<string, string?> queryParams = new()
+            {
+                ["q"] = city,
+                ["units"] = units,
+                ["appid"] = _apiKey
+            };
+
+            string url = QueryHelpers.AddQueryString("weather", queryParams);
+
+            HttpResponseMessage response = await _httpClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
             RootResponse? data = await response.Content.ReadFromJsonAsync<RootResponse>();

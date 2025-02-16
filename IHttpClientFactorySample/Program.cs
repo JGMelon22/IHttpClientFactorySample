@@ -27,7 +27,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/weatherforecast/{city}", async (string city, string? units, IOpenWeatherMapService weatherService) =>
+app.MapGet("/weatherforecast", async (string city, IOpenWeatherMapService weatherService, string units = "standard")=>
 {
     Result<RootResponse> result = await weatherService.GetCurrentWeatherByCityAsync(city, units);
 
