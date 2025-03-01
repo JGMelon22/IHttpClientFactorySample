@@ -9,9 +9,9 @@ namespace IHttpClientFactorySample.Infrastructure.Services;
 
 public class OpenWeatherMapService : IOpenWeatherMapService
 {
+    private readonly string _apiKey;
     private readonly HttpClient _httpClient;
     private readonly ILogger<OpenWeatherMapService> _logger;
-    private readonly string _apiKey;
 
     public OpenWeatherMapService(HttpClient httpClient,
         ILogger<OpenWeatherMapService> logger,
@@ -25,10 +25,10 @@ public class OpenWeatherMapService : IOpenWeatherMapService
     public async Task<Result<RootResponse>> GetCurrentWeatherByCityAsync(string city, string units)
     {
         _logger.LogInformation("Starting Executing: {ClassName}.{MethodName}, City: {City}, Units: {Units}",
-                typeof(OpenWeatherMapService).Name,
-                nameof(GetCurrentWeatherByCityAsync),
-                city,
-                units);
+            typeof(OpenWeatherMapService).Name,
+            nameof(GetCurrentWeatherByCityAsync),
+            city,
+            units);
         try
         {
             Dictionary<string, string?> queryParams = new()
@@ -38,12 +38,12 @@ public class OpenWeatherMapService : IOpenWeatherMapService
                 ["appid"] = _apiKey
             };
 
-            string url = QueryHelpers.AddQueryString("weather", queryParams);
+            var url = QueryHelpers.AddQueryString("weather", queryParams);
 
-            HttpResponseMessage response = await _httpClient.GetAsync(url);
+            var response = await _httpClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
-            RootResponse? data = await response.Content.ReadFromJsonAsync<RootResponse>();
+            var data = await response.Content.ReadFromJsonAsync<RootResponse>();
             return data != null
                 ? Result<RootResponse>.Success(data)
                 : Result<RootResponse>.Failure("Failed to deserialize response.");

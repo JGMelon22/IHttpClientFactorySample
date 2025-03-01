@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using IHttpClientFactorySample.Domains.Dtos;
 using IHttpClientFactorySample.Domains.Shared;
 using IHttpClientFactorySample.Interfaces;
@@ -10,12 +9,12 @@ public static class WeatherEndpoints
     public static void MapWeatherRoutes(this IEndpointRouteBuilder app)
     {
         app.MapGet("/weatherforecast", GetWeather)
-        .WithName("GetCurrentWeatherInformation")
-         .WithOpenApi();
+            .WithName("GetCurrentWeatherInformation")
+            .WithOpenApi();
     }
 
     /// <summary>
-    /// Gets the current weather information for a specified city.
+    ///     Gets the current weather information for a specified city.
     /// </summary>
     /// <param name="city">The name of the city to get weather information for.</param>
     /// <param name="weatherService">The weather service to use for fetching data.</param>
@@ -24,16 +23,14 @@ public static class WeatherEndpoints
     /// <response code="200">Returns the weather information if found.</response>
     /// <response code="400">Returns if there is an error in the request.</response>
     /// <response code="404">Returns if the city is not found.</response>
-    private static async Task<IResult> GetWeather(string city, IOpenWeatherMapService weatherService, string units = "standard")
+    private static async Task<IResult> GetWeather(string city, IOpenWeatherMapService weatherService,
+        string units = "standard")
     {
         Result<RootResponse> result = await weatherService.GetCurrentWeatherByCityAsync(city, units);
 
-        if (result is null)
-        {
-            return Results.NotFound($"Weather information for '{city}' not found.");
-        }
+        if (result is null) return Results.NotFound($"Weather information for '{city}' not found.");
 
-        return result.IsSuccess != false
+        return result.IsSuccess
             ? Results.Ok(result)
             : Results.BadRequest(result);
     }

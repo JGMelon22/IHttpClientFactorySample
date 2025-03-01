@@ -1,11 +1,8 @@
-using IHttpClientFactorySample.Domains.Dtos;
-using IHttpClientFactorySample.Domains.Shared;
+using System.Reflection;
 using IHttpClientFactorySample.Endpoints;
 using IHttpClientFactorySample.Extensions;
 using IHttpClientFactorySample.Infrastructure.Configurations;
-using IHttpClientFactorySample.Interfaces;
 using Microsoft.OpenApi.Models;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +15,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Version = "v1",
         Title = "OpenWeather External Api Consumer",
-        Description = "An ASP.NET Core Web API for check weather information with OpenWeather",
+        Description = "An ASP.NET Core Web API for check weather information with OpenWeather"
     });
 
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";

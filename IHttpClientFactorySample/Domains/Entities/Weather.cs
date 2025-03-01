@@ -2,11 +2,6 @@ namespace IHttpClientFactorySample.Domains.Entities;
 
 public class Weather
 {
-    public int Id { get; set; }
-    public string Main { get; set; } = string.Empty;
-    public string Description { get; set; }=string.Empty;
-    public string Icon { get; set; }=string.Empty;
-
     public Weather()
     {
     }
@@ -18,4 +13,9 @@ public class Weather
         Description = description;
         Icon = icon;
     }
+
+    public int Id { get; set; }
+    public string Main { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string Icon { get; set; } = string.Empty;
 }

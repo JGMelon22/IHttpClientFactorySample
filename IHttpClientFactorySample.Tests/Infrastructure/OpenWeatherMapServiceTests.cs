@@ -1,15 +1,14 @@
+using System.Net;
 using System.Net.Http.Json;
 using IHttpClientFactorySample.Domains.Dtos;
 using IHttpClientFactorySample.Infrastructure.Configurations;
 using IHttpClientFactorySample.Infrastructure.Services;
+using IHttpClientFactorySample.Interfaces;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
 using Moq.Protected;
-using System.Net;
-using IHttpClientFactorySample.Domains.Shared;
 using Shouldly;
-using IHttpClientFactorySample.Interfaces;
 
 namespace IHttpClientFactorySample.Tests.Infrastructure.Services;
 
@@ -31,15 +30,15 @@ public class OpenWeatherMapServiceTests
                     Lat = 51.5085
                 },
                 Weather = new List<WeatherResponse>
+                {
+                    new()
                     {
-                        new WeatherResponse
-                        {
-                            Id = 804,
-                            Main = "Clouds",
-                            Description = "overcast clouds",
-                            Icon = "04n"
-                        }
-                    },
+                        Id = 804,
+                        Main = "Clouds",
+                        Description = "overcast clouds",
+                        Icon = "04n"
+                    }
+                },
                 Base = "stations",
                 Main = new MainResponse
                 {
@@ -86,21 +85,21 @@ public class OpenWeatherMapServiceTests
                 ItExpr.IsAny<CancellationToken>())
             .ReturnsAsync(responseMessage);
 
-        HttpClient httpClient = new HttpClient(httpMessageHandlerMock.Object)
+        var httpClient = new HttpClient(httpMessageHandlerMock.Object)
         {
             BaseAddress = new Uri("https://api.openweathermap.org/data/2.5/")
         };
 
         Mock<ILogger<OpenWeatherMapService>> loggerMock = new();
-        IOptions<OpenWeatherMapApiConfiguration> options = Options.Create(new OpenWeatherMapApiConfiguration { ApiKey = "test-api-key" });
+        var options = Options.Create(new OpenWeatherMapApiConfiguration { ApiKey = "test-api-key" });
 
         IOpenWeatherMapService service = new OpenWeatherMapService(httpClient, loggerMock.Object, options);
 
-        string city = "London";
-        string units = "metric";
+        var city = "London";
+        var units = "metric";
 
         // Act
-        Result<RootResponse> result = await service.GetCurrentWeatherByCityAsync(city, units);
+        var result = await service.GetCurrentWeatherByCityAsync(city, units);
 
         // Assert
         result.ShouldNotBeNull();
@@ -128,21 +127,21 @@ public class OpenWeatherMapServiceTests
                 ItExpr.IsAny<CancellationToken>())
             .ReturnsAsync(responseMessage);
 
-        HttpClient httpClient = new HttpClient(httpMessageHandlerMock.Object)
+        var httpClient = new HttpClient(httpMessageHandlerMock.Object)
         {
             BaseAddress = new Uri("https://api.openweathermap.org/data/2.5/")
         };
 
         Mock<ILogger<OpenWeatherMapService>> loggerMock = new();
-        IOptions<OpenWeatherMapApiConfiguration> options = Options.Create(new OpenWeatherMapApiConfiguration { ApiKey = "test-api-key" });
+        var options = Options.Create(new OpenWeatherMapApiConfiguration { ApiKey = "test-api-key" });
 
         IOpenWeatherMapService service = new OpenWeatherMapService(httpClient, loggerMock.Object, options);
 
-        string city = "London";
-        string units = "metric";
+        var city = "London";
+        var units = "metric";
 
         // Act
-        Result<RootResponse> result = await service.GetCurrentWeatherByCityAsync(city, units);
+        var result = await service.GetCurrentWeatherByCityAsync(city, units);
 
         // Assert
         result.ShouldNotBeNull();

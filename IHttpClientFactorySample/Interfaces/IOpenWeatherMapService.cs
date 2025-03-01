@@ -5,4 +5,5 @@ namespace IHttpClientFactorySample.Interfaces;
 
 public interface IOpenWeatherMapService
 {
-Task<Result<RootResponse>> GetCurrentWeatherByCityAsync(string city, string units = "standard");}
+    Task<Result<RootResponse>> GetCurrentWeatherByCityAsync(string city, string units = "standard");
+}

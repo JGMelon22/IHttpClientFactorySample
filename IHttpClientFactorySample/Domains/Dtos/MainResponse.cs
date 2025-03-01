@@ -14,14 +14,13 @@ public record MainResponse
 
     [JsonPropertyName("temp_max")]
     public double TempMax { get; init; }
+
     public int Pressure { get; init; }
     public int Humidity { get; init; }
 
     [JsonPropertyName("sea_level")]
     public int SeaLevel { get; init; }
 
-
     [JsonPropertyName("grnd_level")]
     public int GrndLevel { get; init; }
 }
-

@@ -2,7 +2,9 @@ namespace IHttpClientFactorySample.Domains.Entities;
 
 public class Coord
 {
-    public Coord() { }
+    public Coord()
+    {
+    }
 
     public Coord(double lon, double lat)
     {

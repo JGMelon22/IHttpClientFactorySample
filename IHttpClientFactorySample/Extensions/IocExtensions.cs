@@ -11,7 +11,7 @@ public static class IocExtensions
     {
         services.AddHttpClient<IOpenWeatherMapService, OpenWeatherMapService>((serviceProvider, client) =>
         {
-            OpenWeatherMapApiConfiguration weatherConfig = serviceProvider
+            var weatherConfig = serviceProvider
                 .GetRequiredService<IOptions<OpenWeatherMapApiConfiguration>>()
                 .Value;
             client.BaseAddress = new Uri(weatherConfig.BaseUrl);
