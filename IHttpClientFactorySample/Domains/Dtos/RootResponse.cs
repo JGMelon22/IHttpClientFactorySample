@@ -2,7 +2,7 @@ namespace IHttpClientFactorySample.Domains.Dtos;
 
 public class RootResponse
 {
-    public CoordReponse Coord { get; set; }
+    public CoordResponse Coord { get; set; }
     public List<WeatherResponse> Weather { get; set; }
     public string Base { get; set; }
     public MainResponse Main { get; set; }
@@ -18,7 +18,7 @@ public class RootResponse
 
     public RootResponse() { }
 
-    public RootResponse(CoordReponse coord, List<WeatherResponse> weather, string @base, MainResponse main, int visibility, WindResponse wind, CloudsResponse clouds, int dt, SysResponse sys, int timezone, int id, string name, int cod)
+    public RootResponse(CoordResponse coord, List<WeatherResponse> weather, string @base, MainResponse main, int visibility, WindResponse wind, CloudsResponse clouds, int dt, SysResponse sys, int timezone, int id, string name, int cod)
     {
         Coord = coord;
         Weather = weather;

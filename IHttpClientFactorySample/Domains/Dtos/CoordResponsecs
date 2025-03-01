@@ -1,10 +1,10 @@
 namespace IHttpClientFactorySample.Domains.Dtos;
 
-public class CoordReponse
+public class CoordResponse
 {
-    public CoordReponse() { }
+    public CoordResponse() { }
 
-    public CoordReponse(double lon, double lat)
+    public CoordResponse(double lon, double lat)
     {
         Lon = lon;
         Lat = lat;

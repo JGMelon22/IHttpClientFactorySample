@@ -9,7 +9,7 @@ public static class MappingExtensions
     {
         return new RootResponse
         {
-            Coord = new CoordReponse
+            Coord = new CoordResponse
             {
                 Lon = root.Coord.Lon,
                 Lat = root.Coord.Lat

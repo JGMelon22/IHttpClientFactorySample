@@ -25,7 +25,7 @@ public class OpenWeatherMapServiceTests
         {
             Content = JsonContent.Create(new RootResponse
             {
-                Coord = new CoordReponse
+                Coord = new CoordResponse
                 {
                     Lon = -0.1257,
                     Lat = 51.5085
