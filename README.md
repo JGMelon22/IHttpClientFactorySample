@@ -41,3 +41,4 @@ A sample ASP NET Core Web API made with minimal API's, IHttpClientFactory with n
 <a href="https://www.macoratti.net/17/05/vbn_webjson1.htm">VB .NET - Consumindo um Web Service JSON - Previsão do Tempo</a><br/>
 <a href="https://www.macoratti.net/17/05/xf_prevtempo1.htm">Xamarin Forms - Previsão do Tempo (OpenWeatherMap)</a><br/>
 <a href="https://openweathermap.org/appid">How to start using professional collections</a><br/>
+<a href="https://stackoverflow.com/questions/69790435/swagger-asp-net-core-minimal-api-include-xml-comments-files">Swagger ASP.NET Core Minimal API include XML comments files</a><br/>
