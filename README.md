@@ -24,12 +24,12 @@ A sample ASP NET Core Web API made with minimal API's, IHttpClientFactory with n
 <table style="width: 100%; text-align: center; border-spacing: 20px;">
   <tr>
     <td style="border: 1px solid #ddd; padding: 10px;">
-      <img src="" alt="Zed Editor" width="870">
+      <img src="https://github.com/user-attachments/assets/fd54e02b-bbb6-400e-bc06-2b4197f9f3c6" alt="Zed Editor" width="870">
     </td>
   </tr>
   <tr>
     <td style="border: 1px solid #ddd; padding: 10px;">
-      <img src="" alt="Swagger UI" width="870">
+      <img src="https://github.com/user-attachments/assets/7f51d114-fd4c-47e8-b157-fb8dc253218c" alt="Swagger UI" width="870">
     </td>
   </tr>
 </table>
