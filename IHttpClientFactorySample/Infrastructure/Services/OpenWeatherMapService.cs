@@ -24,6 +24,11 @@ public class OpenWeatherMapService : IOpenWeatherMapService
 
     public async Task<Result<RootResponse>> GetCurrentWeatherByCityAsync(string city, string units)
     {
+        _logger.LogInformation("Starting Executing: {ClassName}.{MethodName}, City: {City}, Units: {Units}",
+                typeof(OpenWeatherMapService).Name,
+                nameof(GetCurrentWeatherByCityAsync),
+                city,
+                units);
         try
         {
             Dictionary<string, string?> queryParams = new()
@@ -39,12 +44,9 @@ public class OpenWeatherMapService : IOpenWeatherMapService
             response.EnsureSuccessStatusCode();
 
             RootResponse? data = await response.Content.ReadFromJsonAsync<RootResponse>();
-            if (data is null)
-            {
-                return Result<RootResponse>.Failure("Failed to deserialize response.");
-            }
-
-            return Result<RootResponse>.Success(data);
+            return data != null
+                ? Result<RootResponse>.Success(data)
+                : Result<RootResponse>.Failure("Failed to deserialize response.");
         }
         catch (Exception ex)
         {
