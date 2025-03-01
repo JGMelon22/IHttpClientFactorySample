@@ -1,21 +1,10 @@
 namespace IHttpClientFactorySample.Domains.Dtos;
 
-public class SysResponse
+public record SysResponse
 {
-    public int Type { get; set; }
-    public int Id { get; set; }
-    public string Country { get; set; }
-    public int Sunrise { get; set; }
-    public int Sunset { get; set; }
-
-    public SysResponse() { }
-
-    public SysResponse(int type, int id, string country, int sunrise, int sunset)
-    {
-        Type = type;
-        Id = id;
-        Country = country;
-        Sunrise = sunrise;
-        Sunset = sunset;
-    }
+    public int Type { get; init; }
+    public int Id { get; init; }
+    public string Country { get; init; }
+    public int Sunrise { get; init; }
+    public int Sunset { get; init; }
 }

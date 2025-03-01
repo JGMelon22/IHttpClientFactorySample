@@ -2,40 +2,26 @@ using System.Text.Json.Serialization;
 
 namespace IHttpClientFactorySample.Domains.Dtos;
 
-public class MainResponse
+public record MainResponse
 {
-    public double Temp { get; set; }
+    public double Temp { get; init; }
 
     [JsonPropertyName("feels_like")]
-    public double FeelsLike { get; set; }
+    public double FeelsLike { get; init; }
 
     [JsonPropertyName("temp_min")]
-    public double TempMin { get; set; }
+    public double TempMin { get; init; }
 
     [JsonPropertyName("temp_max")]
-    public double TempMax { get; set; }
-    public int Pressure { get; set; }
-    public int Humidity { get; set; }
+    public double TempMax { get; init; }
+    public int Pressure { get; init; }
+    public int Humidity { get; init; }
 
     [JsonPropertyName("sea_level")]
-    public int SeaLevel { get; set; }
+    public int SeaLevel { get; init; }
 
 
     [JsonPropertyName("grnd_level")]
-    public int GrndLevel { get; set; }
-
-    public MainResponse() { }
-
-    public MainResponse(double temp, double feelsLike, double tempMin, double tempMax, int pressure, int humidity, int seaLevel, int grndLevel)
-    {
-        Temp = temp;
-        FeelsLike = feelsLike;
-        TempMin = tempMin;
-        TempMax = tempMax;
-        Pressure = pressure;
-        Humidity = humidity;
-        SeaLevel = seaLevel;
-        GrndLevel = grndLevel;
-    }
+    public int GrndLevel { get; init; }
 }
 

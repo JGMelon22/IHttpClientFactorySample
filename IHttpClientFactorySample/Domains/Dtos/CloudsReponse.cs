@@ -1,13 +1,6 @@
 namespace IHttpClientFactorySample.Domains.Dtos;
 
-public class CloudsResponse
+public record CloudsResponse
 {
-    public int All { get; set; }
-
-    public CloudsResponse() { }
-
-    public CloudsResponse(int all)
-    {
-        All = all;
-    }
+    public int All { get; init; }
 }

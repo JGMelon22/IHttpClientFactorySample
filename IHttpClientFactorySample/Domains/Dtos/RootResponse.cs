@@ -1,37 +1,18 @@
 namespace IHttpClientFactorySample.Domains.Dtos;
 
-public class RootResponse
+public record RootResponse
 {
-    public CoordResponse Coord { get; set; }
-    public List<WeatherResponse> Weather { get; set; }
-    public string Base { get; set; }
-    public MainResponse Main { get; set; }
-    public int Visibility { get; set; }
-    public WindResponse Wind { get; set; }
-    public CloudsResponse Clouds { get; set; }
-    public int Dt { get; set; }
-    public SysResponse Sys { get; set; }
-    public int Timezone { get; set; }
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public int Cod { get; set; }
-
-    public RootResponse() { }
-
-    public RootResponse(CoordResponse coord, List<WeatherResponse> weather, string @base, MainResponse main, int visibility, WindResponse wind, CloudsResponse clouds, int dt, SysResponse sys, int timezone, int id, string name, int cod)
-    {
-        Coord = coord;
-        Weather = weather;
-        Base = @base;
-        Main = main;
-        Visibility = visibility;
-        Wind = wind;
-        Clouds = clouds;
-        Dt = dt;
-        Sys = sys;
-        Timezone = timezone;
-        Id = id;
-        Name = name;
-        Cod = cod;
-    }
+    public CoordResponse Coord { get; init; }
+    public List<WeatherResponse> Weather { get; init; }
+    public string Base { get; init; }
+    public MainResponse Main { get; init; }
+    public int Visibility { get; init; }
+    public WindResponse Wind { get; init; }
+    public CloudsResponse Clouds { get; init; }
+    public int Dt { get; init; }
+    public SysResponse Sys { get; init; }
+    public int Timezone { get; init; }
+    public int Id { get; init; }
+    public string Name { get; init; }
+    public int Cod { get; init; }
 }
