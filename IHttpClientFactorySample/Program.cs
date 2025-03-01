@@ -1,15 +1,29 @@
 using IHttpClientFactorySample.Domains.Dtos;
 using IHttpClientFactorySample.Domains.Shared;
+using IHttpClientFactorySample.Endpoints;
 using IHttpClientFactorySample.Extensions;
 using IHttpClientFactorySample.Infrastructure.Configurations;
 using IHttpClientFactorySample.Interfaces;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "OpenWeather External Api Consumer",
+        Description = "An ASP.NET Core Web API for check weather information with OpenWeather",
+    });
+
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
 
 builder.Services.AddOpenWeatherMapApiClient();
 builder.Services.Configure<OpenWeatherMapApiConfiguration>(options => builder.Configuration
@@ -26,21 +40,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.MapGet("/weatherforecast", async (string city, IOpenWeatherMapService weatherService, string units = "standard")=>
-{
-    Result<RootResponse> result = await weatherService.GetCurrentWeatherByCityAsync(city, units);
-
-    if (result is null)
-    {
-        return Results.NotFound($"Weather information for '{city}' not found.");
-    }
-
-    return result.IsSuccess != false
-        ? Results.Ok(result)
-        : Results.BadRequest(result);
-})
-.WithName("GetCurrentWeatherInformation")
-.WithOpenApi();
+app.MapWeatherRoutes();
 
 app.Run();
